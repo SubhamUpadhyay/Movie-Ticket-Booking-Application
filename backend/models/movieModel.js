@@ -33,7 +33,7 @@ const movieSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    releaseStatus:{
+    releasedStatus:{
         type:String,
         required:true,
         default:"RELEASED"
