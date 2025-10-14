@@ -1,7 +1,13 @@
 const express = require("express");
 const main = require("./db/mongo");
+
+
+
 const movieRoute = require("./routes/movieRoute");
 const authRoute = require("./routes/authRoute");
+const theaterRoute = require("./routes/theaterRoute");
+const showRoute = require("./routes")
+
 require("dotenv").config();
 const app = express(); //express application object
 var cookieParser = require('cookie-parser')
