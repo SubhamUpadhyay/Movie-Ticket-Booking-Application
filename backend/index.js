@@ -6,7 +6,7 @@ const main = require("./db/mongo");
 const movieRoute = require("./routes/movieRoute");
 const authRoute = require("./routes/authRoute");
 const theaterRoute = require("./routes/theaterRoute");
-const showRoute = require("./routes")
+const showRoute = require("./routes/showRoute");
 
 require("dotenv").config();
 const app = express(); //express application object
@@ -15,6 +15,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+
+app.use("/api/theaters",theaterRoute);
+app.use("/api/shows",showRoute);
 app.use("/api/movies",movieRoute);
 app.use("/api/auth",authRoute);
 const PORT = process.env.PORT||4000;
