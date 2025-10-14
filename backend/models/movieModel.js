@@ -20,14 +20,14 @@ const movieSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    langugae:{
+    language:{
         type:[String],
         required:true,
         default:"English"
     },
     releaseDate:{
         type:String,
-        require:true
+        required:true
     },
     director:{
         type:String,
