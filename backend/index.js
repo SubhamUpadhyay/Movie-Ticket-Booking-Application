@@ -1,6 +1,7 @@
 const express = require("express");
 const main = require("./db/mongo");
 const movieRoute = require("./routes/movieRoute");
+const authRoute = require("./routes/authRoute");
 require("dotenv").config();
 const app = express(); //express application object
 var cookieParser = require('cookie-parser')
@@ -9,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use("/api/movies",movieRoute);
-
+app.use("/api/auth",authRoute);
 const PORT = process.env.PORT||4000;
 
 async function connect_server() {
