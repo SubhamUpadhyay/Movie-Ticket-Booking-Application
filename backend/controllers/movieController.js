@@ -24,7 +24,8 @@ const createMovie = async (req, res) => {
     )
       return res.status(401).send("No enough information provied");
     const find_movie = await Movie.find({ name });
-    if (find_movie) return res.status(409).send("Movie already exist");
+    if (find_movie.length > 0)
+      return res.status(409).send("Movie already exist");
     const newMovie = await Movie.create({
       name,
       description,
@@ -34,6 +35,10 @@ const createMovie = async (req, res) => {
       releaseDate,
       director,
       releasedStatus,
+    });
+    return res.status(201).json({
+      message: "Movie created successfully",
+      movie: newMovie,
     });
   } catch (err) {
     return res
@@ -45,10 +50,10 @@ const createMovie = async (req, res) => {
 const deleteMovie = async (req, res) => {
   try {
     const { name } = req.body;
-    if (!name) res.status(402).send("Provide the movie name");
+    if (!name) return res.status(402).send("Provide the movie name");
     const find_movie = await Movie.findOneAndDelete({ name });
-    if (!find_movie) res.send("Movie doesn't exist in database");
-    else res.send("Movie deleted Succesfully");
+    if (!find_movie) return res.send("Movie doesn't exist in database");
+    else return res.send("Movie deleted Succesfully");
   } catch (err) {
     res.send("Error in the deleteMovie API ", err);
   }

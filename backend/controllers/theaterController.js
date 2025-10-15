@@ -10,7 +10,7 @@ const createTheater = async(req,res)=>{
 }
 
 
-const getTheaterByCity = async(req,res)=>{
+const getTheatersByCity = async(req,res)=>{
     try{
         const {city} = req.params;
         const theaters = await Theater.find({city});
@@ -30,3 +30,6 @@ const getAllTheaters = async(req,res)=>{
         return res.status(500).json({error:err.message});
     }
 }
+
+
+module.exports = {createTheater, getAllTheaters, getTheatersByCity};

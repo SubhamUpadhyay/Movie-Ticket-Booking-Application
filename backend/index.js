@@ -20,6 +20,13 @@ const { errorHandler, notFound } = require('./middlewares/errorHandler');
 require("dotenv").config();
 const app = express(); //express application object
 var cookieParser = require('cookie-parser')
+app.use(helmet());
+app.use(cors({
+    origin: process.env.FRONTEND_URL || '*',
+    credentials: true
+}));
+
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -45,11 +52,6 @@ app.use(errorHandler);
 
 
 
-app.use(helmet());
-app.use(cors({
-    origin: process.env.FRONTEND_URL || '*',
-    credentials: true
-}));
 
 
 
